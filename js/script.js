@@ -15,10 +15,10 @@ window.addEventListener('DOMContentLoaded', () => {
         newHours = 'доброй ночи';
     }
     if (hours > 5 && hours < 11) {
-        newHours = 'доброй утро';
+        newHours = 'доброе утро';
     }
     if (hours > 11 && hours < 17) {
-        newHours = 'доброй день';
+        newHours = 'добрый день';
     }
     if (hours > 17 && hours < 24) {
         newHours = 'добрый вечер';
