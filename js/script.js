@@ -4,10 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
-    // получим текущую дату
     const now = new Date();
     const newYear = new Date("December 31, 2021");
-
     const dayWeek = days[now.getDay()];
     const hours = now.getHours();
     const newTime = now.toLocaleTimeString('en');
@@ -22,11 +20,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (hours > 11 && hours < 17) {
         newHours = 'доброй день';
     }
-    if (hours > 17 && hours < 0) {
-        newHours = 'доброй ночи';
+    if (hours > 17 && hours < 24) {
+        newHours = 'добрый вечер';
     }
 
-    //Количество миллисекунд в одном дне
+   //? Количество миллисекунд в одном дне 
     const howDays = 24 * 60 * 60 * 1000;
 
     let getNewYear = Math.floor((newYear.getTime() - now.getTime()) / howDays);
