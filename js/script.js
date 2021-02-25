@@ -1,14 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-
     const days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
-    const now = new Date();
-    const newYear = new Date("December 31, 2021");
+    let now = new Date();
+
+    let newYear = new Date("December 31, 2021");
     const dayWeek = days[now.getDay()];
     const hours = now.getHours();
-    const newTime = now.toLocaleTimeString('en');
     let newHours = '';
 
     if (hours > 0 && hours < 5) {
@@ -24,14 +23,34 @@ window.addEventListener('DOMContentLoaded', () => {
         newHours = 'добрый вечер';
     }
 
-   //? Количество миллисекунд в одном дне 
+    //? Количество миллисекунд в одном дне 
     const howDays = 24 * 60 * 60 * 1000;
 
     let getNewYear = Math.floor((newYear.getTime() - now.getTime()) / howDays);
+    function DomElement(text) {
+        this.text = text;
+    }
 
-    document.body.insertAdjacentHTML('beforebegin', `<li>${newHours}</li>`);
-    document.body.insertAdjacentHTML('beforebegin', `<li> сегодня: ${dayWeek}</li>`);
-    document.body.insertAdjacentHTML('beforebegin', `<li>текущее время: ${newTime}</li>`);
-    document.body.insertAdjacentHTML('beforebegin', `<li>До нового года осталось : ${getNewYear} дней</li>`);
+    DomElement.prototype.createElement = function () {
+        let newElem = document.createElement('div');
+        newElem.textContent = `${this.text}`;
+        document.body.append(newElem);
+    };
+
+    function getMassageTime() {
+        toDai.innerHTML = 'текущее время: ' + new Date().toLocaleTimeString('en');
+    };
+
+    let toDai = document.createElement('div');
+    setInterval(getMassageTime, 1000);
+
+    const hi = new DomElement(`${newHours}`);
+    const toDay = new DomElement(`сегодня  ${dayWeek}`);
+    const dateNewYear = new DomElement(`До нового года осталось : ${getNewYear} дней`);
+
+    hi.createElement();
+    toDay.createElement();
+    document.body.append(toDai) ;
+    dateNewYear.createElement();
 
 });
